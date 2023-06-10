@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import Cookies from 'js-cookie';
 
 function Register() {
     const [user, setUser] = useState({
@@ -19,6 +20,7 @@ function Register() {
             await axios.post('https://desserts-mern.onrender.com/user/register', {...user})
                 .then((response) => {
                     if (response.data.accesstoken) {
+                        Cookies.set.save('refreshtoken', response.data.accesstoken);
                         localStorage.setItem('token', response.data.accesstoken)
             
                         window.location.href = "/";

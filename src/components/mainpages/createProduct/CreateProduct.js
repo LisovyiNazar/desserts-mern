@@ -162,12 +162,6 @@ function CreateProduct() {
                 </div>
 
                 <div className="row">
-                    <label htmlFor="content">Контент</label>
-                    <textarea type="text" name="content" id="content" required
-                    value={product.content} rows="7" onChange={handleChangeInput} />
-                </div>
-
-                <div className="row">
                     <label htmlFor="categories">Категорії: </label>
                     <select name="category" value={product.category} onChange={handleChangeInput} >
                         <option value="">Виберіть категорію</option>

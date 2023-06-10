@@ -63,7 +63,7 @@ function Header() {
                 </h1>
             </div>
 
-            <ul style={styleMenu}>
+            <ul style={styleMenu} onClick={() => setMenu(prev => !prev)}>
                 <li><Link to="/">{isAdmin ? 'Продукти' : 'Магазин'}</Link></li>
 
                 {isAdmin && adminRouter()}

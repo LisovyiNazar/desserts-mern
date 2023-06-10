@@ -4,6 +4,7 @@ import UserAPI from './api/UserAPI'
 import CategoriesAPI from './api/CategoriesAPI'
 
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 export const GlobalState = createContext()
 
@@ -15,7 +16,23 @@ export const DataProvider = ({children}) =>{
     useEffect(() =>{
         const token = localStorage.getItem('token')
         if(token){
-            setToken(token)
+            const refreshToken = async () => {
+                const refreshtoken = Cookies.get('refreshtoken')
+                
+                await axios.post('http://localhost:4000/user/refresh_token', {
+                    refreshtoken: refreshtoken
+                })
+                    .then((res) => {
+                        if (res.data.accesstoken) {
+                            setToken(res.data.accesstoken)
+                            
+                            setTimeout(() => {
+                                refreshToken()
+                            }, 10 * 60 * 1000)
+                        }
+                    })
+            }
+            refreshToken()
         }
     },[])
 

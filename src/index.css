@@ -75,7 +75,7 @@ button{
    align-items: center;
    opacity: 0.98;
    z-index: 99;
-   transition: 0.5s ease-in;
+   transition: 0.3s ease-in;
   }
   header .menu{
     display: block;

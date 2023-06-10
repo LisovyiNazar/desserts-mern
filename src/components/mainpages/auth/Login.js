@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import Cookies from 'js-cookie';
 
 function Login() {
     const [user, setUser] = useState({
@@ -16,9 +17,8 @@ function Login() {
         e.preventDefault()
         try {
             await axios.post('https://desserts-mern.onrender.com/user/login', {...user}).then((response) => {
-                console.log(response.data.accesstoken);
-               
                 if (response.data.accesstoken) {
+                    Cookies.set('refreshtoken', response.data.accesstoken);
                     localStorage.setItem('token', response.data.accesstoken)
                     
                     window.location.href = "/";
