@@ -52,7 +52,7 @@ function Cart() {
     }
 
     const removeProduct = id =>{
-        if(window.confirm("Do you want to delete this product?")){
+        if(window.confirm("Ви дійсно хочете видалити цей продукт?")){
             cart.forEach((item, index) => {
                 if(item._id === id){
                     cart.splice(index, 1)

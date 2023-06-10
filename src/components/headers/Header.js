@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import {GlobalState} from '../../GlobalState'
 import Cart from './icon/cart.svg'
 import {Link} from 'react-router-dom'
@@ -9,7 +9,7 @@ function Header() {
     const [isLogged] = state.userAPI.isLogged
     const [isAdmin] = state.userAPI.isAdmin
     const [cart] = state.userAPI.cart
-    // const [menu, setMenu] = useState(false)
+    const [menu, setMenu] = useState(false)
 
     const logoutUser = async () =>{
         await axios.get('https://desserts-mern.onrender.com/user/logout')
@@ -39,14 +39,14 @@ function Header() {
 
 
     const styleMenu = {
-        left: true ? 0 : "-100%"
+        left: menu ? 0 : "-100%"
     }
 
     return (
         <header>
-            {/* <div className="menu" onClick={() => setMenu(!menu)}>
-                <img src={Menu} alt="" width="30" />
-            </div> */}
+            <div className="menu" onClick={() => setMenu(prev => !prev)}>
+                меню
+            </div>
 
             <div className="logo">
                 <h1>
@@ -57,6 +57,7 @@ function Header() {
                     ) : (
                         <Link to="/">
                             <img src={Cart} alt='' />
+                            <span className='title'>Premium Desserts</span>
                         </Link>
                     )}
                 </h1>
@@ -71,9 +72,9 @@ function Header() {
                     isLogged ? loggedRouter() : <li><Link to="/login">Логін</Link></li>
                 }
 
-                {/* <li onClick={() => setMenu(!menu)}>
-                    <img src={Close} alt="" width="30" className="menu" />
-                </li> */}
+                <li onClick={() => setMenu(prev => !prev)}>
+                    <div className="menu"> X </div>
+                </li>
             </ul>
 
             {

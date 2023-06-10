@@ -21,6 +21,7 @@
     cursor: pointer;
 }
 .total{
+    padding: 0px 20px 0px 20px;
     width: 100%;
     height: 50px;
     display: flex;
@@ -29,4 +30,11 @@
 }
 .total h3{
     color: crimson;
+}
+
+.total button{
+    background-color: #192633;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
 }
