@@ -63,7 +63,12 @@ function Header() {
                 </h1>
             </div>
 
-            <ul style={styleMenu} onClick={() => setMenu(prev => !prev)}>
+            <ul 
+                style={styleMenu} 
+            >
+                <li>
+                    <div onClick={() => {setMenu(prev => !prev)}} className="menu"> X </div>
+                </li>
                 <li><Link to="/">{isAdmin ? 'Продукти' : 'Магазин'}</Link></li>
 
                 {isAdmin && adminRouter()}
@@ -71,10 +76,6 @@ function Header() {
                 {
                     isLogged ? loggedRouter() : <li><Link to="/login">Логін</Link></li>
                 }
-
-                <li onClick={() => setMenu(prev => !prev)}>
-                    <div className="menu"> X </div>
-                </li>
             </ul>
 
             {

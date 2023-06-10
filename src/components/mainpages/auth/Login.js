@@ -17,8 +17,9 @@ function Login() {
         e.preventDefault()
         try {
             await axios.post('https://desserts-mern.onrender.com/user/login', {...user}).then((response) => {
-                if (response.data.accesstoken) {
-                    Cookies.set('refreshtoken', response.data.accesstoken);
+                if (response.data.accesstoken && response.data.refreshtoken) {
+                    Cookies.set('refreshtoken', response.data.refreshtoken);
+
                     localStorage.setItem('token', response.data.accesstoken)
                     
                     window.location.href = "/";
@@ -26,7 +27,7 @@ function Login() {
             })
 
         } catch (err) {
-            alert(err.response.data.msg)
+            console.error(err);
         }
     }
 

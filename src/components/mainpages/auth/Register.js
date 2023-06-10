@@ -15,12 +15,12 @@ function Register() {
 
     const registerSubmit = async e =>{
         e.preventDefault()
-        console.log(user);
         try {
             await axios.post('https://desserts-mern.onrender.com/user/register', {...user})
                 .then((response) => {
-                    if (response.data.accesstoken) {
-                        Cookies.set.save('refreshtoken', response.data.accesstoken);
+                    if (response.data.accesstoken && response.data.refreshtoken) {
+                        Cookies.set.save('refreshtoken', response.data.refreshtoken);
+                        
                         localStorage.setItem('token', response.data.accesstoken)
             
                         window.location.href = "/";
