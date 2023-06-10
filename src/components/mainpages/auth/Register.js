@@ -14,13 +14,17 @@ function Register() {
 
     const registerSubmit = async e =>{
         e.preventDefault()
+        console.log(user);
         try {
             await axios.post('https://desserts-mern.onrender.com/user/register', {...user})
-
-            localStorage.setItem('firstLogin', true)
-
+                .then((response) => {
+                    if (response.data.accesstoken) {
+                        localStorage.setItem('token', response.data.accesstoken)
             
-            window.location.href = "/";
+                        window.location.href = "/";
+                    }
+                })
+
         } catch (err) {
             alert(err.response.data.msg)
         }

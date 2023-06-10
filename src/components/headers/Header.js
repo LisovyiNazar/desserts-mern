@@ -14,7 +14,7 @@ function Header() {
     const logoutUser = async () =>{
         await axios.get('https://desserts-mern.onrender.com/user/logout')
         
-        localStorage.removeItem('firstLogin')
+        localStorage.removeItem('token')
         
         window.location.href = "/";
     }
@@ -63,8 +63,7 @@ function Header() {
             </div>
 
             <ul style={styleMenu}>
-                <li><Link to='/'>Головна</Link></li>
-                <li><Link to="/shop">{isAdmin ? 'Продукти' : 'Магазин'}</Link></li>
+                <li><Link to="/">{isAdmin ? 'Продукти' : 'Магазин'}</Link></li>
 
                 {isAdmin && adminRouter()}
 

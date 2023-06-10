@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, Routes} from 'react-router-dom'
-import Home from './home/home.js'
 import Products from './products/Products'
 import DetailProduct from './detailProduct/DetailProduct'
 import Login from './auth/Login'
@@ -19,8 +18,7 @@ function Pages() {
 
     return (
         <Routes>
-            <Route path="/" exact element={<Home/>} />
-            <Route path="/shop" exact element={<Products/>} />
+            <Route path="/" exact element={<Products/>} />
             <Route path="/detail/:id" exact element={<DetailProduct/>} />
             <Route path="/login" element={<Login />} />
 

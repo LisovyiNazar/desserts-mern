@@ -13,18 +13,9 @@ export const DataProvider = ({children}) =>{
 
 
     useEffect(() =>{
-        const firstLogin = localStorage.getItem('firstLogin')
-        if(firstLogin){
-            const refreshToken = async () =>{
-                const res = await axios.get('https://desserts-mern.onrender.com/user/refresh_token')
-        
-                setToken(res.data.accesstoken)
-    
-                setTimeout(() => {
-                    refreshToken()
-                }, 10 * 60 * 1000)
-            }
-            refreshToken()
+        const token = localStorage.getItem('token')
+        if(token){
+            setToken(token)
         }
     },[])
 

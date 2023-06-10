@@ -15,11 +15,16 @@ function Login() {
     const loginSubmit = async e =>{
         e.preventDefault()
         try {
-            await axios.post('https://desserts-mern.onrender.com/user/login', {...user})
+            await axios.post('https://desserts-mern.onrender.com/user/login', {...user}).then((response) => {
+                console.log(response.data.accesstoken);
+               
+                if (response.data.accesstoken) {
+                    localStorage.setItem('token', response.data.accesstoken)
+                    
+                    window.location.href = "/";
+                }
+            })
 
-            localStorage.setItem('firstLogin', true)
-            
-            window.location.href = "/";
         } catch (err) {
             alert(err.response.data.msg)
         }
