@@ -27,7 +27,7 @@ function Login() {
             })
 
         } catch (err) {
-            console.error(err);
+            alert(err?.response?.data?.msg);
         }
     }
 

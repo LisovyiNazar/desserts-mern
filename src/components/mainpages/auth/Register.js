@@ -19,16 +19,15 @@ function Register() {
             await axios.post('https://desserts-mern.onrender.com/user/register', {...user})
                 .then((response) => {
                     if (response.data.accesstoken && response.data.refreshtoken) {
-                        Cookies.set.save('refreshtoken', response.data.refreshtoken);
+                        Cookies.set('refreshtoken', response.data.refreshtoken);
                         
                         localStorage.setItem('token', response.data.accesstoken)
             
                         window.location.href = "/";
                     }
                 })
-
         } catch (err) {
-            alert(err.response.data.msg)
+            alert(err?.response?.data?.msg);
         }
     }
 
